@@ -1,11 +1,14 @@
 package rikkei.edu.presentation;
 
+import rikkei.edu.business.IBusiness;
+import rikkei.edu.business.IStudent;
 import rikkei.edu.business.StudentManager;
 import rikkei.edu.entity.Student;
 
 import java.util.Scanner;
 
 public class StudentManagement {
+    private static final IStudent studentManager = new StudentManager();
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         while(true){
@@ -39,8 +42,8 @@ public class StudentManagement {
         }
     }
     private static void showStudentList(){
-        Student[] list = StudentManager.findAll();
-        int size = StudentManager.size();
+        Student[] list = studentManager.findAll();
+        int size = studentManager.size();
         if(size == 0){
             System.err.println("Danh sách trong");
             return;

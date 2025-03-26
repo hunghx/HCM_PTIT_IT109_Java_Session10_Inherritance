@@ -4,7 +4,7 @@ import rikkei.edu.entity.Student;
 
 import java.util.UUID;
 
-public class StudentManager {
+public class StudentManager implements IStudent {
     private static final Student[] students;
     private static int size = 0;
     static {
@@ -15,15 +15,15 @@ public class StudentManager {
 
 
     // lấy danh sách
-    public static Student[] findAll(){
+    public  Student[] findAll(){
         return students;
     }
-    public static int size(){
+    public  int size(){
         return size;
     }
 
     // lấy theo id
-    public static Student findById(String id){
+    public  Student findById(String id){
         for (Student student : students) {
             if (student!= null && student.getId().equals(id)) {
                 return student;
@@ -33,7 +33,7 @@ public class StudentManager {
     }
 
     // thêm mơi
-    public static boolean add(Student student){
+    public boolean add(Student student){
         if(size >= 100){
             System.err.println("Mang da day");
              return false;
@@ -43,8 +43,8 @@ public class StudentManager {
         return true;
     }
     // cập nhật thông tin
-    public static boolean update(Student student){
-        int indexUpdate = indexStudentById(student.getId());
+    public boolean update(Student student){
+        int indexUpdate = indexById(student.getId());
         if(indexUpdate == -1){
             System.err.println("Khong tim thay id");
             return false;
@@ -53,7 +53,7 @@ public class StudentManager {
         return true;
     }
 
-    private static int indexStudentById(String id){
+    public int indexById(String id){
         for (int i = 0; i < size; i++) {
             if (students[i]!= null && students[i].getId().equals(id)) {
                 return i;
@@ -62,8 +62,8 @@ public class StudentManager {
         return -1;
     }
     // xóa
-    public static boolean delete(String id){
-        int indexDel = indexStudentById(id);
+    public  boolean delete(String id){
+        int indexDel = indexById(id);
         if(indexDel == -1){
             System.err.println("Khong tim thay id");
             return false;
